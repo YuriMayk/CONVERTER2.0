@@ -16,7 +16,7 @@ This application shows to user the current value his receive if he convert money
 
 ### Clique no link abaixo para vê-lo funcionando! / Click at link below to see it working! 
 
-<a href="https://yurimayk.github.io/Converter 2.0/">Clique aqui!/Click at Here!</a>
+<a href="https://yurimayk.github.io/CONVERTER2.0/">Clique aqui!/Click at Here!</a>
 
 ### Project steps/Etapas do Projeto
 
