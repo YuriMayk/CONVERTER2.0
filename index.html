@@ -9,34 +9,59 @@
     <title>Conversor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Conversor de Moedas</h1>
-    <label>Converter <span>de</span>
-        <select name="Moeda Inicial" id="real">
-            <option value="BRL">R$ <span>Real brasileiro</span></option>
-        </select>
-    </label>
 
-    <label>
-        Converter <span>para</span>
-        <select name="moedaFinal" id="USD">
-            <option value="USD">US$ Dolár americano</option>
-            <option value="EUR">€ Euro</option>
-            <option value="Bitcoin">Bitcoin</option>
-        </select>
-    </label>
+    <div id="h1-div">
+        <h1>Conversor de Moedas</h1>
+    </div>
 
-    <label>
-        Valor
-        <input type="number"> 
-        <button type="submit">Converter</button>
-    </label>
+    <main>
+        <label class="label-select-currency" id="first-label">Converter <span class="to-bold">de</span>
+            <select name="Moeda Inicial" id="souce-money">
+                <option value="BRL">R$ <span>Real brasileiro</span></option>
+            </select>
+        </label>
 
-    <script src="scripts.js"></script>
+        <label class="label-select-currency">
+            Converter <span class="to-bold">para</span>
+            <select name="moedaFinal" id="target-money">
+                <option value="USD">US$ <span class="to-bold">Dolár americano</span></option>
+                <option value="EUR">€ <span class="to-bold"> Euro </span></option>
+                <option value="BTC">Bitcoin</option>
+            </select>
+        </label>
+
+        <label class="to-bold">
+            Valor
+            <input type="number" placeholder="R$ 10.000,00" id="value-for-conversion" autofocus>
+            <button type="button">Converter</button>
+
+            <section class="converting-section">
+                <div>
+                    <label class="imgs">
+                        <img id="first-image" src="./assets/BRL.png" alt="Bandeira do Brasil">
+                        <span class="name-of-the-currency">Real</span>
+                        <span class="value-of-conversion" id="value-of-conversion-first">R$
+                            <span>10.000,00</span></span>
+                    </label>
+                </div>
+                <img src="./assets/Vector.png" alt="Seta">
+                <div>
+                    <label class="imgs">
+                        <img id="second-image" src="./assets/USD.png" alt="Bandeira da moeda final">
+                        <p><span id="final-currency-name" class="name-of-the-currency">Dólar Americano</span></p>
+                        <span class="value-of-conversion" id="value-of-conversion-second">R$
+                            <span>2.000,00</span></span>
+                    </label>
+                </div>
+            </section>
+        </label>
+
+    </main>
 </body>
+<script src="./scripts.js"></script>
 
 </html>
