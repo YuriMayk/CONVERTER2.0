@@ -9,22 +9,34 @@ const secondImage = document.querySelector("#second-image");
 const finalCurrencyName = document.querySelector("#final-currency-name");
 
 // O código abaixo refere-se às variáveis que serão utilizadas durante o código.
+let data = "";
 
 let selectedCurrency = "USD";
-let selectedValueOfCurrency = 5.21;
+let selectedValueOfCurrency = 0;
 let DollarCurrency = 5.21;
-let CountryLanguageSimbol = "en-US"
+let CountryLanguageSimbol = "en-US";
+
+const cotation = async () => {
+  data = await fetch(
+    "https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL"
+  ).then((response) => response.json());
+
+  selectedValueOfCurrency = data.USDBRL.high
+};
+
+cotation();
 
 // A função abaixo converte o valor da moeda de origem(real) para a moeda final(que nesse caso, podem varias entre Dólar, Euro e Bitcoin).
 
-const converter = () => {
-    //O código abaixo resgata o valor inicial a ser convertido. Logo após realiza a conversão limitando o resultado à duas casas decimais.
+const converter = async () => {
+  cotation();
+  //O código abaixo resgata o valor inicial a ser convertido. Logo após realiza a conversão limitando o resultado à duas casas decimais.
   const inicialCurrency = valueForConversion.value;
   const conversion = (
     valueForConversion.value / selectedValueOfCurrency
   ).toFixed(2);
 
-// O código abaixo formata em Real, o valor inicial .
+  // O código abaixo formata em Real, o valor inicial .
 
   inicialValue.innerHTML = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -42,30 +54,30 @@ const converter = () => {
 
 const selectCurrency = (event) => {
   selectedCurrency = event.target.value;
-
+  cotation();
   if (selectedCurrency === "USD") {
     finalCurrencyName.textContent = `Dólar Americano`;
-    selectedValueOfCurrency = 5.21;
+    selectedValueOfCurrency = data.USDBRL.high;
     secondImage.src = "./assets/USD.png";
-    secondImage.alt = "Bandeira dos Estados Unidos"
-    CountryLanguageSimbol = "en-US"
+    secondImage.alt = "Bandeira dos Estados Unidos";
+    CountryLanguageSimbol = "en-US";
   }
   if (selectedCurrency === "EUR") {
     finalCurrencyName.textContent = `Euro`;
-    selectedValueOfCurrency = 5.07;
+    selectedValueOfCurrency = data.EURBRL.high;
     secondImage.src = "./assets/EUR.png";
-    secondImage.alt = "Simbolo do Euro"
-    CountryLanguageSimbol = "de-DE"
+    secondImage.alt = "Simbolo do Euro";
+    CountryLanguageSimbol = "de-DE";
   }
   if (selectedCurrency === "BTC") {
     finalCurrencyName.textContent = `Bitcoin`;
-    selectedValueOfCurrency = 101901.82;
+    selectedValueOfCurrency = data.BTCBRL.high;
     secondImage.src = "./assets/BITCOIN.png";
-    secondImage.alt= "Simbolo do Bitcoin"
-    CountryLanguageSimbol = "pt-BR"
+    secondImage.alt = "Simbolo do Bitcoin";
+    CountryLanguageSimbol = "pt-BR";
   }
-//O código abaixo chama a outra função, atualizandos os valores convertidos em tempo real.
-  converter()
+  //O código abaixo chama a outra função, atualizandos os valores convertidos em tempo real.
+  converter();
 };
 
 // O código abaixo é responsável por informar na ocasião de eventos ocorrerem. Por exempli o primeiro é responsável pelo evento click no elemento buttonConverter. Ele chamará a função converter, assim que houver o click, e essa por sua vez será responsável pela conversão.
